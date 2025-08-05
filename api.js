@@ -47,6 +47,9 @@ async function getPrice() {
 // ... el resto de tu código de la API permanece igual ...
 app.get('/prices', async (req, res) => {
     try {
+        req.headers = {
+            "Access-Control-Allow-Origin":"*"
+        };
         const prices = await getPrice();
 
         if (prices.usd === null || prices.euro === null) {

@@ -44,7 +44,13 @@ async function getPrice() {
     }
 }
 
-// ... el resto de tu código de la API permanece igual ...
+// Configurar la ruta para el archivo HTML
+const htmlFilePath = path.join(__dirname, 'index.html');
+
+app.get('/', (req, res) => {
+    res.sendFile(htmlFilePath);
+});
+
 app.get('/prices', async (req, res) => {
     try {
         req.headers = {

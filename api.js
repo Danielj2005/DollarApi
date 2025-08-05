@@ -1,18 +1,24 @@
 const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
+const https = require('https'); // <--- Añade esta línea
 
 const app = express();
 const port = 3000;
 
+// Crea un agente HTTPS para ignorar la verificación del certificado
+const agent = new https.Agent({
+    rejectUnauthorized: false
+});
+
 async function getPrice() {
     try {
         const url = "https://www.bcv.org.ve/";
-        const { data: html } = await axios.get(url);
+        // Pasa el agente en la configuración de la petición de axios
+        const { data: html } = await axios.get(url, { httpsAgent: agent });
+        
         const $ = cheerio.load(html);
 
-        // Los selectores que usaste en tu código no son los correctos para la página actual.
-        // He revisado la página del BCV y estos son los nuevos selectores para el dólar y el euro.
         const usdElement = $('#dolar strong');
         const euroElement = $('#euro strong');
 
@@ -30,7 +36,7 @@ async function getPrice() {
             euroPrice = parseFloat(euroText.replace(/[^0-9.]/g, ''));
         }
 
-        return { usd: usdPrice, euro: euroPrice };
+        return { usd: usdPrice.toFixed(2), euro: euroPrice.toFixed(2) };
 
     } catch (error) {
         console.error('Error fetching data from BCV: ' + error.message);
@@ -38,6 +44,7 @@ async function getPrice() {
     }
 }
 
+// ... el resto de tu código de la API permanece igual ...
 app.get('/prices', async (req, res) => {
     try {
         const prices = await getPrice();

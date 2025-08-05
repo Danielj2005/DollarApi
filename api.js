@@ -2,6 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const https = require('https'); // <--- Añade esta línea
+const path = require('path'); // <--- Añade esta línea
 
 const app = express();
 const port = 3000;

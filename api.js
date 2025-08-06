@@ -137,9 +137,9 @@ function generateIndex(prices) {
                                 <p class="mb-0 text-white-75">BCV</p>
                             </div>
                             <div class="card-body p-4">
-                                <div class="d-flex align-items-center mb-4 pb-3 border-bottom">
+                                <div class="row d-flex align-items-center mb-4 pb-3 border-bottom">
 
-                                    <div class="col-12 col-md-6 justify-content-between align-items-center d-flex">
+                                    <div class="col-12 col-md-6 justify-content-between align-items-center d-flex mb-4">
                                         <div class="p-3 bg-success-subtle rounded-circle text-center text-start">
                                             <i class="fa-solid fa-calculator text-primary fs-4"></i>
                                         </div>
@@ -151,7 +151,7 @@ function generateIndex(prices) {
                                         </div>
                                     </div>    
 
-                                    <div class="row ms-2">
+                                    <div class="col-12 col-md-6 row ms-2">
                                         <div class="mb-2 col col-12 text-start">
                                             <h5 class="col-12 mb-0 fas fa-dollar-sign text-success">&nbsp; USD</h5>
                                             <span class="fs-4 fw-bold text-dark">Bs.</span>
